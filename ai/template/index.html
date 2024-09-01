@@ -1,0 +1,39 @@
+!DOCTYPE html>
+<html>
+   <header class="header">
+      <title class="header__title">ARIA</title>
+   </header>
+   <body class="body">  
+    <h1 class="header__title">ARIA</h1>
+    <form method="POST" action="/send_message">
+        <input type = "text" placeholder="Envoie ton message">
+        <button type="submit">Envoyer</button>
+    </form>
+    <div id="respons_message"></div>
+
+    <script>
+        const form = document.querySelector('form');
+        const responseMessage = document.getElementById('response_message');
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            const formData = new formData(form);
+            fetch('/send_message', {
+                method: 'POST',
+                bdy : formData
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                respons_message.innerHTML = data;
+            });
+            form.reset();
+        });
+    </script>
+    </body>
+
+
+
+
+
+
+</html>
