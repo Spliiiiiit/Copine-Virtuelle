@@ -47,8 +47,12 @@ def get_voice_message(message):
         }
     }
     headers = {
-
+        'accept' : 'audio/mpeg',
+        'xi-api-key': ELEVEN_LABS_API_KEY,
+        'Content-Type': 'application/json'
     }
+
+    response = requests.post("https://api.eleven-labs.com/v1/tts", json=payload, headers=headers)
 
 from flask import Flask, request, render_template
 app = Flask(__name__)
